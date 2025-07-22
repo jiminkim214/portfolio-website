@@ -1,7 +1,10 @@
-import React, { use, useState } from 'react';
+import React, { useState } from 'react';
 import WelcomeAnimation from './components/WelcomeAnimation';
-
-
+import About from './components/About';
+import Hero from './components/Hero';
+import Projects from './components/Projects';
+import Contact from './components/Contact';
+import Navigation from './components/Navigation';
 
 
 function App() {
@@ -18,9 +21,17 @@ function App() {
   return (
     <div className = "min-h-screen bg-black text-white overflow-x-hidden">
       {showWelcome && <WelcomeAnimation onComplete = {handleWelcomeComplete} />}
-      <div className = {`transition-all-duration-1000 ${showMain ? 'translate-y-0 opacity-100' : 'translate-y-full opacity-0'}`}>
+      <div className={`transition-all duration-1000 ${
+        showMain ? 'translate-y-0 opacity-100' : 'translate-y-full opacity-0'
+      }`}>
+        <Navigation />
+        <Hero />
+        <About /> 
+        <Projects />
+        <Contact />
+
       </div>
-    </div>
+    // </div>
   );
 }
 

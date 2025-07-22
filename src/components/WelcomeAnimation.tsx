@@ -41,7 +41,7 @@ const WelcomeAnimation: React.FC<WelcomeAnimationProps> = ({ onComplete }) => {
       isVisible ? 'opacity-100' : 'opacity-0'
     }`}>
       <div className="text-center">
-        <div className="text-6xl md:text-8xl font-light text-white mb-4 transition-all duration-300">
+        <div className="text-6xl md:text-8xl font-light text-white mb-4 transition-all duration-200">
           {greetings[currentIndex]}
         </div>
         <div className="w-24 h-1 bg-gradient-to-r from-blue-500 to-purple-500 mx-auto rounded-full opacity-60"></div>
