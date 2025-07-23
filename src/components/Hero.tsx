@@ -12,15 +12,14 @@ const Hero: React.FC = () => {
     <section className="min-h-screen flex items-center justify-center relative bg-gradient-to-br from-gray-900 via-gray-800 to-black">
       <div className="container mx-auto px-6 text-center">
         <div className="animate-fade-in-up">
+            <p className="text-xl md:text-2xl text-gray-300 mb-8 max-w-2xl mx-auto">
+            Based in Ithaca, NY
+          </p>
           <h1 className="text-5xl md:text-7xl font-bold text-white mb-6 leading-tight">
-            <span className="block">Jimin</span>
-            <span className="block bg-gradient-to-r from-blue-500 to-purple-500 bg-clip-text text-transparent">
-              Kim
-            </span>
+            <span className="block">Hi, I'm Jimin. </span>
           </h1>
-          
           <p className="text-xl md:text-2xl text-gray-300 mb-8 max-w-2xl mx-auto">
-            Software Engineer crafting digital experiences with passion and precision
+            I love building things with code and exploring new technologies.
           </p>
           
           <div className="flex justify-center space-x-6 mb-12">
