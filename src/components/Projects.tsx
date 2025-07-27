@@ -4,37 +4,21 @@ import { ExternalLink, Github } from 'lucide-react';
 const Projects: React.FC = () => {
   const projects = [
     {
-      title: 'E-Commerce Platform',
-      description: 'A full-stack e-commerce solution built with React, Node.js, and MongoDB. Features include user authentication, payment processing, and admin dashboard.',
+      title: 'ClarityAI',
+      description: 'A full-stack AI-powered application that provides personalized theraputic support and mental health chat.',
       image: 'https://images.pexels.com/photos/230544/pexels-photo-230544.jpeg?auto=compress&cs=tinysrgb&w=600',
-      tech: ['React', 'Node.js', 'MongoDB', 'Stripe'],
-      github: 'https://github.com',
+      tech: ['React', 'TypeScript','TailwindCSS', 'PostgreSQL', 'Supabase'],
+      github: 'https://github.com/jiminkim214/ClarityAI',
       live: 'https://example.com'
     },
     {
-      title: 'Task Management App',
-      description: 'A collaborative task management application with real-time updates, team collaboration features, and advanced project tracking.',
+      title: 'Saferbites',
+      description: 'A food allergy app that helps users find safe dining options based on their allergies.',
       image: 'https://images.pexels.com/photos/196644/pexels-photo-196644.jpeg?auto=compress&cs=tinysrgb&w=600',
-      tech: ['Next.js', 'TypeScript', 'PostgreSQL', 'Socket.io'],
-      github: 'https://github.com',
-      live: 'https://example.com'
+      tech: ['React', 'Figma', 'CSS'],
+      github: 'https://github.com/jiminkim214/saferbites',
+      live: 'https://www.youtube.com/watch?v=GRLzZO94CQo'
     },
-    {
-      title: 'AI Data Analytics Dashboard',
-      description: 'An intelligent analytics dashboard that processes large datasets and provides actionable insights using machine learning algorithms.',
-      image: 'https://images.pexels.com/photos/590020/pexels-photo-590020.jpeg?auto=compress&cs=tinysrgb&w=600',
-      tech: ['Python', 'React', 'TensorFlow', 'AWS'],
-      github: 'https://github.com',
-      live: 'https://example.com'
-    },
-    {
-      title: 'Social Media Platform',
-      description: 'A modern social media platform with real-time messaging, content sharing, and advanced privacy controls.',
-      image: 'https://images.pexels.com/photos/267389/pexels-photo-267389.jpeg?auto=compress&cs=tinysrgb&w=600',
-      tech: ['Vue.js', 'Express', 'Redis', 'Docker'],
-      github: 'https://github.com',
-      live: 'https://example.com'
-    }
   ];
 
   return (
