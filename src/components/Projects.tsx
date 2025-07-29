@@ -12,6 +12,30 @@ const Projects: React.FC = () => {
       live: 'https://example.com'
     },
     {
+      title: 'CornellGO',
+      description: 'A food allergy app that helps users find safe dining options based on their allergies.',
+      image: 'https://images.pexels.com/photos/196644/pexels-photo-196644.jpeg?auto=compress&cs=tinysrgb&w=600',
+      tech: ['Dart', 'Typescript', 'JavaScript', 'Figma'],
+      github: 'https://github.com/cornell-dti/cornell-go',
+      live: 'https://www.youtube.com/watch?v=GRLzZO94CQo'
+    },
+    {
+      title: 'BeanSearch',
+      description: 'A food allergy app that helps users find safe dining options based on their allergies.',
+      image: 'https://images.pexels.com/photos/196644/pexels-photo-196644.jpeg?auto=compress&cs=tinysrgb&w=600',
+      tech: ['Python', 'NLP', 'SVD', 'TF-IDF'],
+      github: 'https://github.com/chrisrjohnson04/BeanSearch',
+      live: 'https://www.youtube.com/watch?v=GRLzZO94CQo'
+    },
+    {
+      title: 'BOOTedCamp',
+      description: 'A food allergy app that helps users find safe dining options based on their allergies.',
+      image: 'https://images.pexels.com/photos/196644/pexels-photo-196644.jpeg?auto=compress&cs=tinysrgb&w=600',
+      tech: ['OCamL', 'Git'],
+      github: 'https://github.com/jiminkim214/BOOTedCamp',
+      live: 'https://www.youtube.com/watch?v=GRLzZO94CQo'
+    },
+    {
       title: 'Saferbites',
       description: 'A food allergy app that helps users find safe dining options based on their allergies.',
       image: 'https://images.pexels.com/photos/196644/pexels-photo-196644.jpeg?auto=compress&cs=tinysrgb&w=600',
