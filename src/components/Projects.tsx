@@ -29,7 +29,7 @@ const Projects: React.FC = () => {
     },
     {
       title: 'BOOTedCamp',
-      description: 'A food allergy app that helps users find safe dining options based on their allergies.',
+      description: 'A backend application(terminal) designed to help students learn new skills and track their progress.',
       image: 'https://images.pexels.com/photos/196644/pexels-photo-196644.jpeg?auto=compress&cs=tinysrgb&w=600',
       tech: ['OCamL', 'Git'],
       github: 'https://github.com/jiminkim214/BOOTedCamp',
