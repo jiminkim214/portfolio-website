@@ -16,7 +16,7 @@ const Hero: React.FC = () => {
             Based in Ithaca, NY
           </p>
           <h1 className="text-5xl md:text-7xl font-bold text-white mb-6 leading-tight">
-            <span className="block">Hi, I'm Jimin. </span>
+            <span className="block">Hi, I'm Jimin! </span>
           </h1>
           <p className="text-xl md:text-2xl text-gray-300 mb-8 max-w-2xl mx-auto">
             I love building things with code and exploring new technologies.
