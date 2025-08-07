@@ -19,10 +19,9 @@ const Publications: React.FC = () => {
         'Low-Rank Adaptation (LoRA)',
         'Hybrid Trading Models'
       ],
-      link: 'https://example.com/publication2',
+      link: 'https://drive.google.com/file/d/1t_mYjEKDZzaSe6UPUvLb4GQfMVgXASjr/view?usp=sharing',
       status: 'Accepted',
-      doi: '10.1000/conference.2024.002',
-      impact: 'High Impact Research'
+      doi: 'coming soon'
     }
   ];
 
@@ -80,14 +79,6 @@ const Publications: React.FC = () => {
               }`}
               style={{ transitionDelay: `${index * 200}ms` }}
             >
-              {/* Impact badge */}
-              <div className="absolute top-6 right-6">
-                <div className="flex items-center gap-2 px-3 py-1 bg-gradient-to-r from-purple-500 to-pink-600 text-white text-xs font-medium rounded-full">
-                  <Award size={12} />
-                  <span>{publication.impact}</span>
-                </div>
-              </div>
-
               <div className="flex flex-col gap-6">
                 <div className="flex-1">
                   <div className="flex items-start justify-between mb-6">
