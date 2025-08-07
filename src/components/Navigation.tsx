@@ -1,13 +1,27 @@
 import React, { useState, useEffect } from 'react';
-import { Menu, X } from 'lucide-react';
 
 const Navigation: React.FC = () => {
   const [isScrolled, setIsScrolled] = useState(false);
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [activeSection, setActiveSection] = useState('hero');
 
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 50);
+
+      // Update active section based on scroll position
+      const sections = ['hero', 'projects', 'publications', 'contact'];
+      const scrollPosition = window.scrollY + 100;
+
+      for (const section of sections) {
+        const element = document.getElementById(section);
+        if (element) {
+          const { offsetTop, offsetHeight } = element;
+          if (scrollPosition >= offsetTop && scrollPosition < offsetTop + offsetHeight) {
+            setActiveSection(section);
+            break;
+          }
+        }
+      }
     };
 
     window.addEventListener('scroll', handleScroll);
@@ -15,91 +29,45 @@ const Navigation: React.FC = () => {
   }, []);
 
   const scrollToSection = (id: string) => {
-    const element = document.getElementById(id);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
+    if (id === 'hero') {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    } else {
+      const element = document.getElementById(id);
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth' });
+      }
     }
-    setIsMobileMenuOpen(false);
   };
 
+  const navItems = [
+    { id: 'hero', label: 'Home' },
+    { id: 'projects', label: 'Projects' },
+    { id: 'publications', label: 'Publications' },
+    { id: 'contact', label: 'Contact' }
+  ];
+
   return (
-    <nav className={`fixed top-0 left-0 right-0 z-40 transition-all duration-300 ${
-      isScrolled ? 'bg-gray-900/80 backdrop-blur-md' : 'bg-transparent'
-    }`}>
-      <div className="container mx-auto px-6 py-4">
-        <div className="flex items-center justify-between">
-          <div className="text-2xl font-bold text-white">
-            JK
-          </div>
-          
-          {/* Desktop Navigation */}
-          <div className="hidden md:flex space-x-8">
-            <button 
-              onClick={() => scrollToSection('about')}
-              className="text-gray-300 hover:text-white transition-colors duration-200"
-            >
-              About
-            </button>
-            <button 
-              onClick={() => scrollToSection('projects')}
-              className="text-gray-300 hover:text-white transition-colors duration-200"
-            >
-              Projects
-            </button>
-            <button 
-              onClick={() => scrollToSection('experience')}
-              className="text-gray-300 hover:text-white transition-colors duration-200"
-            >
-              Experience
-            </button>
-            <button 
-              onClick={() => scrollToSection('contact')}
-              className="text-gray-300 hover:text-white transition-colors duration-200"
-            >
-              Contact
-            </button>
-          </div>
-
-          {/* Mobile Menu Button */}
+    <nav className={`fixed top-6 left-1/2 transform -translate-x-1/2 z-50 transition-all duration-300`}>
+      <div className={`flex items-center space-x-2 px-4 py-3 rounded-full transition-all duration-300 ${
+        isScrolled 
+          ? 'bg-white/80 backdrop-blur-md border border-gray-200/50 shadow-lg' 
+          : 'bg-white/60 backdrop-blur-sm border border-white/30'
+      }`}>
+        {navItems.map((item) => (
           <button
-            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className="md:hidden text-white"
+            key={item.id}
+            onClick={() => scrollToSection(item.id)}
+            className={`px-4 py-2 rounded-full text-sm font-light tracking-wide transition-all duration-300 ${
+              activeSection === item.id
+                ? 'bg-black text-white shadow-md'
+                : isScrolled
+                ? 'text-black hover:bg-gray-100'
+                : 'text-gray-800 hover:bg-white/30'
+            }`}
           >
-            {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+            {item.label}
           </button>
-        </div>
-
-        {/* Mobile Navigation */}
-        {isMobileMenuOpen && (
-          <div className="md:hidden mt-4 pb-4">
-            <div className="flex flex-col space-y-4">
-              <button 
-                onClick={() => scrollToSection('about')}
-                className="text-gray-300 hover:text-white transition-colors duration-200 text-left"
-              >
-                About
-              </button>
-              <button 
-                onClick={() => scrollToSection('projects')}
-                className="text-gray-300 hover:text-white transition-colors duration-200 text-left"
-              >
-                Projects
-              </button>
-              <button 
-                onClick={() => scrollToSection('experience')}
-                className="text-gray-300 hover:text-white transition-colors duration-200 text-left"
-              >
-                Experience
-              </button>
-              <button 
-                onClick={() => scrollToSection('contact')}
-                className="text-gray-300 hover:text-white transition-colors duration-200 text-left"
-              >
-                Contact
-              </button>
-            </div>
-          </div>
-        )}
+        ))}
       </div>
     </nav>
   );

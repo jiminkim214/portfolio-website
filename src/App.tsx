@@ -4,6 +4,7 @@ import Hero from './components/Hero';
 import Projects from './components/Projects';
 import Publications from './components/Publication';
 import Contact from './components/Contact';
+import Navigation from './components/Navigation';
 
 function App() {
   const [showWelcome, setShowWelcome] = useState(true);
@@ -19,6 +20,7 @@ function App() {
   return (
     <div className="min-h-screen bg-white text-black overflow-x-hidden">
       {showWelcome && <WelcomeAnimation onComplete = {handleWelcomeComplete} />}
+      {showMain && <Navigation />}
       <div className={`transition-opacity duration-1000 ${
         showMain ? 'opacity-100' : 'opacity-0'
       }`}>

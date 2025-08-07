@@ -9,15 +9,15 @@ const WelcomeAnimation: React.FC<WelcomeAnimationProps> = ({ onComplete }) => {
   const [isVisible, setIsVisible] = useState(true);
 
   const greetings = [
-    'Cornell',
-    'New York',
-    'Software Developer',
-    'Ithaca',
-    'Cornell Tech',
-    'Designer',
-    'Connecticut',
-    'Computer Science',
-    'Seoul'
+    'ithaca',
+    'new york',
+    'software engineer',
+    'seoul',
+    'cornell tech',
+    'designer',
+    'connecticut',
+    'computer science',
+    'cornell'
   ];
 
   useEffect(() => {
