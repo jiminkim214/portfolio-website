@@ -40,9 +40,11 @@ const Hero: React.FC = () => {
       <div className="container mx-auto px-6 text-center max-w-4xl relative z-10">
         <div className={`transition-all duration-1000 ${isLoaded ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'}`}>
           <div className="mb-8">
-            <div className="w-20 h-20 mx-auto mb-6 rounded-full bg-gradient-to-r from-blue-500 to-purple-600 flex items-center justify-center text-white text-2xl font-bold shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105">
-              JK
-            </div>
+            <img
+              src="/img/profile.jpg"
+              alt="Profile"
+              className="w-20 h-20 mx-auto mb-6 rounded-full object-cover shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105"
+            />
           </div>
           
           <h1 className="text-6xl md:text-8xl font-extralight text-gray-900 mb-6 leading-tight tracking-tight">
