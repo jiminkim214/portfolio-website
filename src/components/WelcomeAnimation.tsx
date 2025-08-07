@@ -9,16 +9,15 @@ const WelcomeAnimation: React.FC<WelcomeAnimationProps> = ({ onComplete }) => {
   const [isVisible, setIsVisible] = useState(true);
 
   const greetings = [
-    'Hello',
-    'Ciao',
-    'Hola',
-    'Bonjour',
-    'Hallo',
-    'Olá',
-    'Привет',
-    'こんにちは',
-    '안녕하세요',
-    'مرحبا'
+    'Cornell',
+    'New York',
+    'Software Developer',
+    'Ithaca',
+    'Cornell Tech',
+    'Designer',
+    'Connecticut',
+    'Computer Science',
+    'Seoul'
   ];
 
   useEffect(() => {
@@ -28,10 +27,10 @@ const WelcomeAnimation: React.FC<WelcomeAnimationProps> = ({ onComplete }) => {
       } else {
         setTimeout(() => {
           setIsVisible(false);
-          setTimeout(onComplete, 800);
+          setTimeout(onComplete, 1);
         }, 1000);
       }
-    }, 400);
+    }, 100);
 
     return () => clearTimeout(timer);
   }, [currentIndex, greetings.length, onComplete]);
@@ -41,7 +40,7 @@ const WelcomeAnimation: React.FC<WelcomeAnimationProps> = ({ onComplete }) => {
       isVisible ? 'opacity-100' : 'opacity-0'
     }`}>
       <div className="text-center">
-        <div className="text-6xl md:text-8xl font-light text-black mb-4 transition-all duration-0.05s ease-in-out">
+        <div className="text-6xl md:text-3xl font-light text-black mb-4 transition-all duration-0.05s ease-in-out">
           {greetings[currentIndex]}
         </div>
         <div className="w-24 h-0.5 bg-black mx-auto opacity-20"></div>

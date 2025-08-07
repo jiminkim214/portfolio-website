@@ -20,8 +20,8 @@ function App() {
   return (
     <div className="min-h-screen bg-white text-black overflow-x-hidden">
       {showWelcome && <WelcomeAnimation onComplete = {handleWelcomeComplete} />}
-      <div className={`transition-all duration-1000 ${
-        showMain ? 'translate-y-0 opacity-100' : 'translate-y-full opacity-0'
+      <div className={`transition-opacity duration-1000 ${
+        showMain ? 'opacity-100' : 'opacity-0'
       }`}>
         <Hero />
         <About /> 
