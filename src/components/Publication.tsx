@@ -1,7 +1,10 @@
-import React from 'react';
-import { ExternalLink, FileText, Calendar, Users, Tag } from 'lucide-react';
+import React, { useState, useEffect, useRef } from 'react';
+import { ExternalLink, FileText, Calendar, Users, Tag, Award } from 'lucide-react';
 
 const Publications: React.FC = () => {
+  const [isVisible, setIsVisible] = useState(false);
+  const sectionRef = useRef<HTMLElement>(null);
+
   const publications = [
     {
       title: 'Advancing Quantitative Trading Strategies Using Fine-Tuned Open-Source Large Language Models: A Hybrid Approach with Numerical and Textual Data Integration Using RAG and LoRA Techniques',
@@ -18,86 +21,124 @@ const Publications: React.FC = () => {
       ],
       link: 'https://example.com/publication2',
       status: 'Accepted',
-      doi: '10.1000/conference.2024.002'
+      doi: '10.1000/conference.2024.002',
+      impact: 'High Impact Research'
     }
   ];
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+        }
+      },
+      { threshold: 0.1 }
+    );
+
+    if (sectionRef.current) {
+      observer.observe(sectionRef.current);
+    }
+
+    return () => observer.disconnect();
+  }, []);
 
   const getStatusColor = (status: string) => {
     switch (status) {
       case 'Published':
-        return 'bg-green-100 text-green-800';
+        return 'bg-green-100 text-green-800 border-green-200';
       case 'Accepted':
-        return 'bg-blue-100 text-blue-800';
+        return 'bg-blue-100 text-blue-800 border-blue-200';
       case 'Under Review':
-        return 'bg-yellow-100 text-yellow-800';
+        return 'bg-yellow-100 text-yellow-800 border-yellow-200';
       default:
-        return 'bg-gray-100 text-gray-800';
+        return 'bg-gray-100 text-gray-800 border-gray-200';
     }
   };
 
   return (
-    <section id="publications" className="py-20 bg-white">
+    <section id="publications" ref={sectionRef} className="py-24 bg-white">
       <div className="container mx-auto px-6">
-        <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-light text-black mb-4 tracking-tight">
+        <div className={`text-center mb-20 transition-all duration-1000 ${
+          isVisible ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'
+        }`}>
+          <h2 className="text-5xl md:text-6xl font-extralight text-gray-900 mb-6 tracking-tight">
             Publications
           </h2>
-          <div className="w-16 h-0.5 bg-black mx-auto opacity-20 mb-6"></div>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto font-light">
-            Academic contributions and research publications in technology, design, and digital innovation.
+          <div className="w-24 h-0.5 bg-gradient-to-r from-transparent via-gray-400 to-transparent mx-auto mb-8"></div>
+          <p className="text-xl text-gray-600 max-w-3xl mx-auto font-light leading-relaxed">
+            Academic contributions and research publications in technology, AI, and digital innovation.
           </p>
         </div>
 
-        <div className="max-w-4xl mx-auto space-y-8">
+        <div className="max-w-5xl mx-auto space-y-8">
           {publications.map((publication, index) => (
             <div
               key={index}
-              className="group bg-white border border-gray-100 rounded-lg p-8 hover:shadow-lg transition-all duration-300 hover:border-gray-200"
+              className={`group relative bg-white border border-gray-100 rounded-3xl p-10 hover:border-gray-200 hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 ${
+                isVisible ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'
+              }`}
+              style={{ transitionDelay: `${index * 200}ms` }}
             >
-              <div className="flex flex-col lg:flex-row lg:items-start gap-6">
+              {/* Impact badge */}
+              <div className="absolute top-6 right-6">
+                <div className="flex items-center gap-2 px-3 py-1 bg-gradient-to-r from-purple-500 to-pink-600 text-white text-xs font-medium rounded-full">
+                  <Award size={12} />
+                  <span>{publication.impact}</span>
+                </div>
+              </div>
+
+              <div className="flex flex-col gap-6">
                 <div className="flex-1">
-                  <div className="flex items-start justify-between mb-4">
-                    <div className="flex-1">
-                      <h3 className="text-xl font-normal text-black mb-2 group-hover:text-gray-700 transition-colors duration-300 leading-tight">
+                  <div className="flex items-start justify-between mb-6">
+                    <div className="flex-1 pr-4">
+                      <h3 className="text-2xl font-medium text-gray-900 mb-4 group-hover:text-blue-600 transition-colors duration-300 leading-tight">
                         {publication.title}
                       </h3>
                       
-                      <div className="flex flex-wrap items-center gap-4 text-sm text-gray-600 mb-3">
-                        <div className="flex items-center gap-1">
-                          <Users size={14} />
-                          <span>{publication.authors.join(', ')}</span>
+                      <div className="flex flex-wrap items-center gap-6 text-sm text-gray-600 mb-4">
+                        <div className="flex items-center gap-2">
+                          <Users size={16} className="text-gray-400" />
+                          <span className="font-medium">{publication.authors.join(', ')}</span>
                         </div>
-                        <div className="flex items-center gap-1">
-                          <Calendar size={14} />
+                        <div className="flex items-center gap-2">
+                          <Calendar size={16} className="text-gray-400" />
                           <span>{publication.year}</span>
                         </div>
-                        <div className="flex items-center gap-1">
-                          <FileText size={14} />
+                        <div className="flex items-center gap-2">
+                          <FileText size={16} className="text-gray-400" />
                           <span>{publication.type}</span>
                         </div>
                       </div>
 
-                      <p className="text-gray-800 font-medium mb-4">
-                        {publication.journal}
-                      </p>
+                      <div className="mb-6">
+                        <p className="text-lg text-gray-800 font-medium mb-2">
+                          {publication.journal}
+                        </p>
+                        {publication.doi !== 'Pending' && (
+                          <p className="text-sm text-gray-500">
+                            DOI: {publication.doi}
+                          </p>
+                        )}
+                      </div>
                     </div>
 
-                    <span className={`px-3 py-1 rounded-full text-xs font-medium ${getStatusColor(publication.status)}`}>
+                    <span className={`px-4 py-2 rounded-full text-sm font-medium border ${getStatusColor(publication.status)}`}>
                       {publication.status}
                     </span>
                   </div>
 
                   {/* Keywords section */}
-                  <div className="mb-4">
-                    <div className="flex items-center gap-2 mb-2">
-                      <Tag size={14} className="text-gray-500" />
-                      <span className="text-sm font-medium text-gray-700">Keywords:</span>
+                  <div className="mb-8">
+                    <div className="flex items-center gap-2 mb-4">
+                      <Tag size={16} className="text-gray-500" />
+                      <span className="text-sm font-medium text-gray-700">Research Keywords</span>
                     </div>
-                    <div className="flex flex-wrap gap-2">
+                    <div className="flex flex-wrap gap-3">
                       {publication.keywords.map((keyword, keywordIndex) => (
                         <span
                           key={keywordIndex}
-                          className="px-3 py-1 bg-gray-50 text-gray-700 rounded-full text-xs border border-gray-200 hover:bg-gray-100 transition-colors duration-200"
+                          className="px-4 py-2 bg-gradient-to-r from-gray-50 to-gray-100 text-gray-700 rounded-full text-sm border border-gray-200 hover:from-blue-50 hover:to-blue-100 hover:border-blue-200 hover:text-blue-700 transition-all duration-300 cursor-default"
                         >
                           {keyword}
                         </span>
@@ -105,20 +146,18 @@ const Publications: React.FC = () => {
                     </div>
                   </div>
 
-                  <div className="flex flex-wrap items-center gap-4">
-                    {publication.doi !== 'Pending' && (
-                      <span className="text-xs text-gray-500">
-                        DOI: {publication.doi}
-                      </span>
-                    )}
+                  <div className="flex items-center justify-between">
+                    <div className="text-sm text-gray-500">
+                      Published in {publication.journal} • {publication.year}
+                    </div>
                     
                     <a
                       href={publication.link}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center gap-2 px-4 py-2 text-sm text-black border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors duration-300"
+                      className="group/link inline-flex items-center gap-3 px-6 py-3 bg-gray-900 text-white rounded-full hover:bg-gray-800 transition-all duration-300 hover:shadow-lg hover:-translate-y-0.5"
                     >
-                      <ExternalLink size={14} />
+                      <ExternalLink size={16} className="group-hover/link:rotate-45 transition-transform duration-300" />
                       <span>View Publication</span>
                     </a>
                   </div>
