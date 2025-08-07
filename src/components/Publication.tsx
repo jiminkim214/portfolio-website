@@ -65,9 +65,6 @@ const Publications: React.FC = () => {
             Publications
           </h2>
           <div className="w-24 h-0.5 bg-gradient-to-r from-transparent via-gray-400 to-transparent mx-auto mb-8"></div>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto font-light leading-relaxed">
-            Academic contributions and research publications in technology, AI, and digital innovation.
-          </p>
         </div>
 
         <div className="max-w-5xl mx-auto space-y-8">

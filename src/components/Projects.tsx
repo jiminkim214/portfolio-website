@@ -12,7 +12,7 @@ const Projects: React.FC = () => {
       description: 'A full-stack AI-powered application that provides personalized therapeutic support and mental health chat with advanced natural language processing.',
       tech: ['React', 'TypeScript', 'TailwindCSS', 'PostgreSQL', 'Supabase'],
       github: 'https://github.com/jiminkim214/ClarityAI',
-      live: 'https://example.com'
+      live: 'clarity-ai-vert.vercel.app'
     },
     {
       title: 'CornellGO',
@@ -65,14 +65,10 @@ const Projects: React.FC = () => {
         <div className={`text-center mb-20 transition-all duration-1000 ${
           isVisible ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'
         }`}>
-          <h2 className="text-4xl md:text-5xl font-light text-black mb-4 tracking-tight">
+          <h2 className="text-4xl md:text-6xl font-light text-black mb-4 tracking-tight">
             Projects
           </h2>
-          <div className="w-16 h-0.5 bg-black mx-auto opacity-20 mb-6"></div>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto font-light">
-            A showcase of recent work and personal projects demonstrating innovation, 
-            technical expertise, and creative problem-solving.
-          </p>
+          <div className="w-24 h-0.5 bg-gradient-to-r from-transparent via-gray-400 to-transparent mx-auto mb-8"></div>
         </div>
 
         <div className="max-w-6xl mx-auto">
