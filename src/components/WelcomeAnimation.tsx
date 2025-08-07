@@ -37,14 +37,14 @@ const WelcomeAnimation: React.FC<WelcomeAnimationProps> = ({ onComplete }) => {
   }, [currentIndex, greetings.length, onComplete]);
 
   return (
-    <div className={`fixed inset-0 bg-black z-50 flex items-center justify-center transition-opacity duration-800 ${
+    <div className={`fixed inset-0 bg-white z-50 flex items-center justify-center transition-opacity duration-800 ${
       isVisible ? 'opacity-100' : 'opacity-0'
     }`}>
       <div className="text-center">
-        <div className="text-6xl md:text-8xl font-light text-white mb-4 transition-all duration-0.05s ease-in-out">
+        <div className="text-6xl md:text-8xl font-light text-black mb-4 transition-all duration-0.05s ease-in-out">
           {greetings[currentIndex]}
         </div>
-        <div className="w-24 h-1 bg-gradient-to-r from-blue-500 to-purple-500 mx-auto rounded-full opacity-60"></div>
+        <div className="w-24 h-0.5 bg-black mx-auto opacity-20"></div>
       </div>
     </div>
   );
