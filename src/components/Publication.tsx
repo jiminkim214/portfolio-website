@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { ExternalLink, FileText, Calendar, Users, Tag, Award } from 'lucide-react';
+import { ExternalLink, Calendar, Users, Tag } from 'lucide-react';
 
 const Publications: React.FC = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -93,10 +93,6 @@ const Publications: React.FC = () => {
                           <Calendar size={16} className="text-gray-400" />
                           <span>{publication.year}</span>
                         </div>
-                        <div className="flex items-center gap-2">
-                          <FileText size={16} className="text-gray-400" />
-                          <span>{publication.type}</span>
-                        </div>
                       </div>
 
                       <div className="mb-6">
@@ -134,23 +130,18 @@ const Publications: React.FC = () => {
                     </div>
                   </div>
 
-                  <div className="flex items-center justify-between">
-                    <div className="text-sm text-gray-500">
-                      Published in {publication.journal} • {publication.year}
-                    </div>
-                    
-                    <a
-                      href={publication.link}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="group/link inline-flex items-center gap-3 px-6 py-3 bg-gray-900 text-white rounded-full hover:bg-gray-800 transition-all duration-300 hover:shadow-lg hover:-translate-y-0.5"
-                    >
-                      <ExternalLink size={16} className="group-hover/link:rotate-45 transition-transform duration-300" />
-                      <span>View Publication</span>
-                    </a>
-                  </div>
+                <div className="flex items-center lg:items-start justify-center lg:justify-end">
+                  <a
+                    href={publication.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="group/link inline-flex items-center gap-3 px-6 py-3 bg-gray-900 text-white rounded-full hover:bg-gray-800 transition-all duration-300 hover:shadow-lg hover:-translate-y-0.5">
+                    <ExternalLink size={16} className="group-hover/link:rotate-45 transition-transform duration-300" />
+                    <span>View Publication</span>
+                  </a>
                 </div>
-              </div>
+                </div>
+            </div>
             </div>
           ))}
         </div>
