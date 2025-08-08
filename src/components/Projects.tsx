@@ -13,7 +13,7 @@ const Projects: React.FC = () => {
       tech: ['Python', 'React', 'TypeScript', 'TailwindCSS', 'PostgreSQL', 'Supabase'],
       github: 'https://github.com/jiminkim214/ClarityAI',
       live: 'https://clarity-ai-vert.vercel.app',
-      image: '/img/projects/clarityai.jpg',
+      image: '/img/projects/clarityai.png',
       imageAlt: 'ClarityAI interface showing AI-powered mental health chat'
     },
     {
@@ -21,7 +21,7 @@ const Projects: React.FC = () => {
       description: 'A mobile application for Cornell University students to explore campus through interactive challenges and gamified experiences.',
       tech: ['Dart', 'TypeScript', 'JavaScript', 'Figma'],
       github: 'https://github.com/cornell-dti/cornell-go',
-      image: '/img/projects/cornellgo.png',
+      image: '/img/projects/cornellgo1.png',
       imageAlt: 'CornellGO mobile app interface'
     },
     {
