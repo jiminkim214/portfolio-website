@@ -13,7 +13,7 @@ const Projects: React.FC = () => {
       tech: ['Python', 'React', 'TypeScript', 'TailwindCSS', 'PostgreSQL', 'Supabase'],
       github: 'https://github.com/jiminkim214/ClarityAI',
       live: 'https://clarity-ai-vert.vercel.app',
-      image: '/images/projects/clarityai.png',
+      image: '/img/projects/clarityai.jpg',
       imageAlt: 'ClarityAI interface showing AI-powered mental health chat'
     },
     {
@@ -21,7 +21,7 @@ const Projects: React.FC = () => {
       description: 'A mobile application for Cornell University students to explore campus through interactive challenges and gamified experiences.',
       tech: ['Dart', 'TypeScript', 'JavaScript', 'Figma'],
       github: 'https://github.com/cornell-dti/cornell-go',
-      image: '/images/projects/cornellgo.png',
+      image: '/img/projects/cornellgo.png',
       imageAlt: 'CornellGO mobile app interface'
     },
     {
@@ -29,7 +29,7 @@ const Projects: React.FC = () => {
       description: 'A sophisticated search engine implementation using natural language processing and advanced information retrieval techniques.',
       tech: ['Python', 'NLP', 'SVD', 'TF-IDF'],
       github: 'https://github.com/chrisrjohnson04/BeanSearch',
-      image: '/images/projects/beansearch.png',
+      image: '/img/projects/beansearch.png',
       imageAlt: 'BeanSearch engine interface'
     },
     {
@@ -38,7 +38,7 @@ const Projects: React.FC = () => {
       tech: ['OCaml', 'Git'],
       github: 'https://github.com/jiminkim214/BOOTedCamp',
       live: 'https://www.youtube.com/watch?v=IWzOTUvt2xI',
-      image: '/images/projects/bootedcamp.png',
+      image: '/img/projects/bootedcamp.png',
       imageAlt: 'BOOTedCamp learning platform'
     },
     {
@@ -47,7 +47,7 @@ const Projects: React.FC = () => {
       tech: ['React', 'Figma', 'CSS'],
       github: 'https://github.com/jiminkim214/saferbites',
       live: 'https://www.youtube.com/watch?v=GRLzZO94CQo',
-      image: '/images/projects/saferbites.png',
+      image: '/img/projects/saferbites.png',
       imageAlt: 'Saferbites app showing food allergy options'
     },
   ];
@@ -99,15 +99,15 @@ const Projects: React.FC = () => {
                     <img
                       src={project.image}
                       alt={project.imageAlt}
-                      className="w-full h-64 object-cover transition-transform duration-300 group-hover:scale-105"
+                      className="w-full h-90 object-cover transition-transform duration-300 group-hover:scale-105"
                       onError={(e) => {
                         // Fallback to placeholder if image fails to load
-                        e.currentTarget.src = `data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 256"><rect width="400" height="256" fill="%23f3f4f6"/><text x="200" y="128" text-anchor="middle" dy="0.3em" font-family="sans-serif" font-size="18" fill="%236b7280">${project.title}</text></svg>`;
+                        e.currentTarget.src = `data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 320"><rect width="320" height="320" fill="%23f3f4f6"/><text x="160" y="160" text-anchor="middle" dy="0.3em" font-family="sans-serif" font-size="18" fill="%236b7280">${project.title}</text></svg>`;
                       }}
                     />
                   ) : (
-                    // Placeholder for projects without images
-                    <div className="w-full h-64 bg-gray-100 flex items-center justify-center rounded-lg">
+                    // Placeholder for projects without images - also almost square
+                    <div className="w-full h-90 bg-gray-100 flex items-center justify-center rounded-lg">
                       <span className="text-gray-500 font-light text-xl">{project.title}</span>
                     </div>
                   )}
