@@ -25,21 +25,21 @@ const Projects: React.FC = () => {
       imageAlt: 'CornellGO mobile app interface'
     },
     {
+      title: 'BOOTedCamp',
+      description: 'A backend application designed to help students learn new skills and track their progress through structured learning paths.',
+      tech: ['OCaml', 'React', 'CSV', 'Git'],
+      github: 'https://github.com/jiminkim214/BOOTedCamp',
+      live: 'https://booted-camp.vercel.app',
+      image: '/img/projects/bootedcamp.png',
+      imageAlt: 'BOOTedCamp learning platform'
+    },
+    {
       title: 'BeanSearch',
       description: 'A sophisticated search engine implementation using natural language processing and advanced information retrieval techniques.',
       tech: ['Python', 'NLP', 'SVD', 'TF-IDF'],
       github: 'https://github.com/chrisrjohnson04/BeanSearch',
       image: '/img/projects/beansearch.png',
       imageAlt: 'BeanSearch engine interface'
-    },
-    {
-      title: 'BOOTedCamp',
-      description: 'A backend application designed to help students learn new skills and track their progress through structured learning paths.',
-      tech: ['OCaml', 'Git'],
-      github: 'https://github.com/jiminkim214/BOOTedCamp',
-      live: 'https://www.youtube.com/watch?v=IWzOTUvt2xI',
-      image: '/img/projects/bootedcamp.png',
-      imageAlt: 'BOOTedCamp learning platform'
     },
     {
       title: 'Saferbites',
