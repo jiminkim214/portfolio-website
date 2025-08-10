@@ -93,6 +93,20 @@ const Projects: React.FC = () => {
 
   const isImageLoaded = (index: number) => loadedImages.has(index);
 
+  // Function to handle card clicks
+  const handleCardClick = (project: any) => {
+    const url = project.live || project.github;
+    if (url) {
+      window.open(url, '_blank', 'noopener,noreferrer');
+    }
+  };
+
+  // Function to handle individual link clicks (prevent card click)
+  const handleLinkClick = (e: React.MouseEvent, url: string) => {
+    e.stopPropagation(); // Prevent card click
+    window.open(url, '_blank', 'noopener,noreferrer');
+  };
+
   return (
     <section id="projects" ref={sectionRef} className="py-24 bg-white">
       <div className="container mx-auto px-6">
@@ -114,10 +128,11 @@ const Projects: React.FC = () => {
             {projects.map((project, index) => (
               <div
                 key={index}
-                className={`group bg-white border border-gray-100 rounded-xl p-8 hover:border-gray-200 hover:shadow-xl transition-all duration-300 hover:-translate-y-2 overflow-hidden ${
+                className={`group bg-white border border-gray-100 rounded-xl p-8 hover:border-gray-200 hover:shadow-xl transition-all duration-300 hover:-translate-y-2 overflow-hidden cursor-pointer ${
                   isVisible ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'
                 }`}
                 style={{ transitionDelay: `${index * 150}ms` }}
+                onClick={() => handleCardClick(project)}
                 onMouseEnter={() => setHoveredProject(index)}
                 onMouseLeave={() => setHoveredProject(null)}
               >
@@ -137,8 +152,8 @@ const Projects: React.FC = () => {
                       className={`w-full h-96 object-cover transition-all duration-500 group-hover:scale-105 ${
                         isImageLoaded(index) ? 'opacity-100' : 'opacity-0'
                       }`}
-                      loading="lazy" // Native lazy loading
-                      decoding="async" // Async decoding for better performance
+                      loading="lazy"
+                      decoding="async"
                       onLoad={() => handleImageLoad(index)}
                       onError={(e) => {
                         console.log(`❌ Image failed to load: ${project.image}`);
@@ -146,7 +161,7 @@ const Projects: React.FC = () => {
                         handleImageLoad(index);
                       }}
                       style={{
-                        aspectRatio: '1 / 1', // Maintain aspect ratio
+                        aspectRatio: '1 / 1',
                         objectFit: 'cover'
                       }}
                     />
@@ -179,28 +194,31 @@ const Projects: React.FC = () => {
                   ))}
                 </div>
 
-                {/* Project Links */}
+                {/* Project Links - Now with click prevention */}
                 <div className="flex justify-end space-x-4">
-                  <a
-                    href={project.github}
-                    target="_blank"
-                    rel="noopener noreferrer"
+                  <button
+                    onClick={(e) => handleLinkClick(e, project.github)}
                     className="p-3 text-gray-600 hover:text-black hover:bg-gray-50 rounded-lg transition-all duration-300"
                     title="View GitHub Repository"
                   >
                     <Github size={20} />
-                  </a>
+                  </button>
                   {project.live && (
-                    <a
-                      href={project.live}
-                      target="_blank"
-                      rel="noopener noreferrer"
+                    <button
+                      onClick={(e) => handleLinkClick(e, project.live)}
                       className="p-3 text-gray-600 hover:text-black hover:bg-gray-50 rounded-lg transition-all duration-300"
                       title="View Live Project"
                     >
                       <ExternalLink size={20} />
-                    </a>
+                    </button>
                   )}
+                </div>
+
+                {/* Visual indicator for clickability */}
+                <div className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                  <div className="bg-black/10 backdrop-blur-sm rounded-full p-2">
+                    <ExternalLink size={16} className="text-black/60" />
+                  </div>
                 </div>
               </div>
             ))}
