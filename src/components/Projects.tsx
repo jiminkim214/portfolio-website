@@ -4,6 +4,7 @@ import { ExternalLink, Github } from 'lucide-react';
 const Projects: React.FC = () => {
   const [isVisible, setIsVisible] = useState(false);
   const [hoveredProject, setHoveredProject] = useState<number | null>(null);
+  const [loadedImages, setLoadedImages] = useState<Set<number>>(new Set());
   const sectionRef = useRef<HTMLElement>(null);
 
   const projects = [
@@ -13,7 +14,7 @@ const Projects: React.FC = () => {
       tech: ['Python', 'React', 'TypeScript', 'TailwindCSS', 'PostgreSQL', 'Supabase'],
       github: 'https://github.com/jiminkim214/ClarityAI',
       live: 'https://clarity-ai-vert.vercel.app',
-      image: '/img/projects/clarityai.png',
+      image: '/img/projects/clarityai1.png',
       imageAlt: 'ClarityAI interface showing AI-powered mental health chat'
     },
     {
@@ -30,7 +31,7 @@ const Projects: React.FC = () => {
       tech: ['OCaml', 'React', 'CSV', 'Git'],
       github: 'https://github.com/jiminkim214/BOOTedCamp',
       live: 'https://booted-camp.vercel.app',
-      image: '/img/projects/bootedcamp.png',
+      image: '/img/projects/bootedcamp1.png',
       imageAlt: 'BOOTedCamp learning platform'
     },
     {
@@ -52,6 +53,23 @@ const Projects: React.FC = () => {
     },
   ];
 
+  // Preload images for faster rendering
+  useEffect(() => {
+    const preloadImages = () => {
+      projects.forEach((project, index) => {
+        if (project.image) {
+          const img = new Image();
+          img.onload = () => {
+            setLoadedImages(prev => new Set(prev).add(index));
+          };
+          img.src = project.image;
+        }
+      });
+    };
+
+    preloadImages();
+  }, []);
+
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
@@ -69,6 +87,12 @@ const Projects: React.FC = () => {
     return () => observer.disconnect();
   }, []);
 
+  const handleImageLoad = (index: number) => {
+    setLoadedImages(prev => new Set(prev).add(index));
+  };
+
+  const isImageLoaded = (index: number) => loadedImages.has(index);
+
   return (
     <section id="projects" ref={sectionRef} className="py-24 bg-white">
       <div className="container mx-auto px-6">
@@ -79,10 +103,13 @@ const Projects: React.FC = () => {
             Projects
           </h2>
           <div className="w-24 h-0.5 bg-gradient-to-r from-transparent via-gray-400 to-transparent mx-auto mb-8"></div>
+          <p className="text-xl text-gray-600 max-w-3xl mx-auto font-light">
+            A showcase of recent work and personal projects demonstrating innovation, 
+            technical expertise, and creative problem-solving.
+          </p>
         </div>
 
         <div className="max-w-7xl mx-auto">
-          {/* Changed to 2 columns layout with larger cards */}
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-10">
             {projects.map((project, index) => (
               <div
@@ -94,26 +121,43 @@ const Projects: React.FC = () => {
                 onMouseEnter={() => setHoveredProject(index)}
                 onMouseLeave={() => setHoveredProject(null)}
               >
-                <div className="mb-8 overflow-hidden rounded-lg">
+                {/* Optimized Image Section */}
+                <div className="mb-8 overflow-hidden rounded-lg relative">
+                  {/* Loading skeleton */}
+                  {!isImageLoaded(index) && (
+                    <div className="absolute inset-0 bg-gray-100 animate-pulse flex items-center justify-center z-10">
+                      <div className="text-gray-400 text-sm">Loading...</div>
+                    </div>
+                  )}
+                  
                   {project.image ? (
                     <img
                       src={project.image}
                       alt={project.imageAlt}
-                      className="w-full h-90 object-cover transition-transform duration-300 group-hover:scale-105"
+                      className={`w-full h-96 object-cover transition-all duration-500 group-hover:scale-105 ${
+                        isImageLoaded(index) ? 'opacity-100' : 'opacity-0'
+                      }`}
+                      loading="lazy" // Native lazy loading
+                      decoding="async" // Async decoding for better performance
+                      onLoad={() => handleImageLoad(index)}
                       onError={(e) => {
-                        // Fallback to placeholder if image fails to load
-                        e.currentTarget.src = `data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 320"><rect width="320" height="320" fill="%23f3f4f6"/><text x="160" y="160" text-anchor="middle" dy="0.3em" font-family="sans-serif" font-size="18" fill="%236b7280">${project.title}</text></svg>`;
+                        console.log(`❌ Image failed to load: ${project.image}`);
+                        e.currentTarget.src = `data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 384"><rect width="384" height="384" fill="%23f3f4f6"/><text x="192" y="192" text-anchor="middle" dy="0.3em" font-family="sans-serif" font-size="18" fill="%236b7280">${project.title}</text></svg>`;
+                        handleImageLoad(index);
+                      }}
+                      style={{
+                        aspectRatio: '1 / 1', // Maintain aspect ratio
+                        objectFit: 'cover'
                       }}
                     />
                   ) : (
-                    // Placeholder for projects without images - also almost square
-                    <div className="w-full h-90 bg-gray-100 flex items-center justify-center rounded-lg">
+                    <div className="w-full h-96 bg-gray-100 flex items-center justify-center rounded-lg">
                       <span className="text-gray-500 font-light text-xl">{project.title}</span>
                     </div>
                   )}
                 </div>
 
-                {/* Project Content - Increased spacing */}
+                {/* Project Content */}
                 <div className="mb-6">
                   <h3 className="text-2xl font-medium text-black mb-4 group-hover:text-gray-700 transition-colors duration-300">
                     {project.title}
@@ -123,7 +167,7 @@ const Projects: React.FC = () => {
                   </p>
                 </div>
                 
-                {/* Tech Stack - Larger tags */}
+                {/* Tech Stack */}
                 <div className="flex flex-wrap gap-3 mb-8">
                   {project.tech.map((tech, techIndex) => (
                     <span
@@ -135,7 +179,7 @@ const Projects: React.FC = () => {
                   ))}
                 </div>
 
-                {/* Project Links - Larger buttons */}
+                {/* Project Links */}
                 <div className="flex justify-end space-x-4">
                   <a
                     href={project.github}
