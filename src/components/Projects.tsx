@@ -22,6 +22,7 @@ const Projects: React.FC = () => {
       description: 'A mobile application for Cornell University students to explore campus through interactive challenges and gamified experiences.',
       tech: ['Dart', 'TypeScript', 'JavaScript', 'Figma'],
       github: 'https://github.com/cornell-dti/cornell-go',
+      live: 'https://apps.apple.com/us/app/cornellgo/id1562549651',
       image: '/img/projects/cornellgo1.png',
       imageAlt: 'CornellGO mobile app interface'
     },
