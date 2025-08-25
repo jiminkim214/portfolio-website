@@ -8,7 +8,7 @@ const Publications: React.FC = () => {
   const publications = [
     {
       title: 'Advancing Quantitative Trading Strategies Using Fine-Tuned Open-Source Large Language Models: A Hybrid Approach with Numerical and Textual Data Integration Using RAG and LoRA Techniques',
-      authors: ['Jimin Kim', 'Seth H. Huang', 'Ka Lok Kellogg Wong'],
+      authors: ['Seth H. Huang', 'Jimin Kim', 'Ka Lok Kellogg Wong'],
       journal: 'Springer',
       year: 'AUG 2025',
       type: 'Research Paper',
