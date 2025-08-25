@@ -19,9 +19,9 @@ const Publications: React.FC = () => {
         'Low-Rank Adaptation (LoRA)',
         'Hybrid Trading Models'
       ],
-      link: 'https://drive.google.com/file/d/1t_mYjEKDZzaSe6UPUvLb4GQfMVgXASjr/view?usp=sharing',
-      status: 'Accepted',
-      doi: 'coming soon'
+      link: 'https://link.springer.com/chapter/10.1007/978-981-96-5833-6_3',
+      status: 'Published',
+      doi: 'https://doi.org/10.1007/978-981-96-5833-6_3'
     }
   ];
 
